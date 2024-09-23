@@ -39,7 +39,7 @@ export const NuevoCliente = () => {
                Swal.fire({
                 title: "Envio de Cliente",
                 text: res.data.mensaje,
-                icon: "succes"
+                icon: "success"
               }); 
             }else{
                 Swal.fire({
