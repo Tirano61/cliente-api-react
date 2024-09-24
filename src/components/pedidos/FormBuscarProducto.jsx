@@ -2,10 +2,13 @@
 
 import React from 'react'
 
-export const FormBuscarProducto = (props) => {
+
+export const FormBuscarProducto = ({buscarProducto,
+    leerDatosBusqueda }) => {
+    
     return (
         <>
-            <form onSubmit={ props.bucarProductos }>
+            <form onSubmit={ buscarProducto }>
                 <legend>Busca un Producto y agrega una cantidad</legend>
 
                 <div className="campo">
@@ -13,7 +16,7 @@ export const FormBuscarProducto = (props) => {
                     <input type="text" 
                         placeholder="Nombre Productos" 
                         name="productos" 
-                        onChange={ props.leerDatosBusqueda }
+                        onChange={ leerDatosBusqueda }
                     />
                 </div>
                 <input type="submit" 

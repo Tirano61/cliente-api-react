@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import clienteAxios from '../../config/axios';
 import { Spinner } from '../layouts/Spinner';
 import { FormBuscarProducto } from './FormBuscarProducto';
+import Swal from 'sweetalert2';
 
 export const NuevoPedido = () => {
 
@@ -13,25 +14,45 @@ export const NuevoPedido = () => {
     
     const [cliente, setcliente] = useState();
     const [busqueda, guardarBusqueda] = useState("");
-
-    const buscarCliente = async()=>{
-        const consulta = await clienteAxios.get(`/clientes/${id}`);
-        console.log(consulta.data.cliente);
-        setcliente(consulta.data.cliente);
-    }
-
+    const [resultados, setresultados] = useState("");
 
     useEffect(() => {
+        const buscarCliente = async()=>{
+            const consulta = await clienteAxios.get(`/clientes/${id}`);
+            //console.log(consulta.data.cliente);
+            setcliente(consulta.data.cliente);
+        };
         buscarCliente()
     }, []);
 
-    const buscarProducto = (e) =>{
-        e.preventDefault();
-        //! Obtener los priductos de la busqueda
+    const buscarProducto = async(e) =>{
+        try {
+            e.preventDefault()
+        
+            //! Obtener los priductos de la busqueda
+            const resultado = await clienteAxios.post(`/productos/busqueda/${busqueda}`);
+            console.log(resultado.data);
+            //! Si no hay resultados alerta
+            if(!resultado.data[0]){
+
+            }else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Sin resutados',
+                    text: 'No se encontraron resultados'
+                });
+            }
+           
+            //Swal.fire
+        } catch (error) {
+            console.log(error);
+        }
+
     }
     //! Almacenar busqueda en el state
     const leerDatosBusqueda = (e) =>{
         guardarBusqueda( e.target.value);
+        console.log( e.target.value);
     }
 
     if(!cliente) return <Spinner/>
@@ -107,7 +128,7 @@ export const NuevoPedido = () => {
                 </ul>
                 <div className="campo">
                     <label>Total:</label>
-                    <input type="number" name="precio" placeholder="Precio" readonly="readonly"/> 
+                    <input type="number" name="precio" placeholder="Precio" readOnly="readonly"/> 
                 </div>
                 <div className="enviar">
                     <input type="submit" className="btn btn-azul" value="Agregar Pedido" />
