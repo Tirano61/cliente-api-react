@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios'
 import { useNavigate } from 'react-router-dom';
+import { CRMContext } from '../../context/CRMContext';
 
 export const NuevoProducto = () => {
 	const navigate = useNavigate();
+
+	const [auth, guardarAuth ] = useContext(CRMContext);
   
 	const [producto, setproducto] = useState({
 		nombre: '',
@@ -62,6 +65,13 @@ export const NuevoProducto = () => {
 			})
 		}
 	}
+
+	//! Verificar si el usuario esta autenticado
+	useEffect(() => {
+		if(!auth.auth){
+			navigate('/iniciar-sesion');
+		}
+	}, []);
 
 	return (
 		<>
