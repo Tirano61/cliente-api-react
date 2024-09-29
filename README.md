@@ -1,3 +1,16 @@
+## Acerca del Curso
+   ## UDEMY
+   ### Desarrollo web - Nodejs
+   ### Node.js - Bootcamp Desarrollo Web inc. MVC y REST APIs
+   ### Aprende: MVC, Rest API's, ORMs, Enviar Emails, Autenticación, Subir Archivos, EJS, Pug, React y más - INCLUYE PROYECTOS
+   - 11.588 estudiantes
+   - Creado por: Jan pablo De la Torre Valdez
+
+# Aplicación
+  ## Esta corriendo en : https://fascinating-sfogliatella-ac65c9.netlify.app
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
